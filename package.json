@@ -1,0 +1,10 @@
+{
+  "name": "chrono-range",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Cédric Tailly",
+  "license": "MIT",
+  "dependencies": {
+    "chrono-node": "^2.5.0"
+  }
+}
