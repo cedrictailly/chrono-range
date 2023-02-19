@@ -1,32 +1,36 @@
 # ChronoRange
+ChronoRange is a simple library to parse and validate date ranges.
 
-ChronoRange is a node.js module for parsing and validating date ranges in a [chrono](https://github.com/wanasit/chrono) compatible format.
+## Installation
+ ChornoRange can be installed using npm
 
-It allows you to easily check if a given date is in the range, and also supports file and filesystem operations.
+```
+npm install chrono-range
+```
 
 ## Usage
+ChronoRange can be used to validate a date in a predefined range with the `check` method.
 
-To create a new range, use the `ChronoRange` class:
+```javascript
+const ChronoRange = require('chrono-range');
 
-```js
-const chronoRange = require('chronoRange');
-const range = new chronoRange('between 2019-06-01 and 2019-06-30');
+const range = new ChronoRange('between Jan 1 2001 and Dec 31 2011 excluded');
+
+// will return `true`
+const beforeFirst = range.check(new Date('2001-01-01'));
+// will return `false`
+const firstDay = range.check(new Date('2011-12-31'));
 ```
 
-To check if a date is in the range, use the `check` method:
+ChronoRange also provide methods to check if a file is in the specified range, `checkFile` supporting `async/await` and `checkFileSync` for synchronous calls.
 
-```js
-const date = new Date('2019-06-15');
-console.log(range.check(date)); // true
+```javascript
+const ChronoRange = require('chrono-range');
+
+const range = new ChronoRange('after Jan 1 2020');
+
+// will return `true`
+const newerFile = range.checkFile('file_1.txt');
+// will return `false`
+const olderFile = range.checkFile('file_2.txt');
 ```
-
-To check if a file is in the range, use the `checkFile` method:
-
-```js
-const filePath = './somefile.txt';
-console.log(range.checkFile(filePath));
-```
-
-## License
-
-ChronoRange is released under the MIT License.

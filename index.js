@@ -72,7 +72,15 @@ class ChronoRange {
     return true;
   }
 
-  checkFile(file, field = "mtime") {
+  async checkFile(file, field = "mtime") {
+
+    if (!["atime", "mtime", "ctime", "birthtime"].includes(field))
+      throw new Error(`Invalid field: ${field}`);
+
+    return this.check(await require("fs").stat(file)[field]);
+  }
+
+  checkFileSync(file, field = "mtime") {
 
     if (!["atime", "mtime", "ctime", "birthtime"].includes(field))
       throw new Error(`Invalid field: ${field}`);
