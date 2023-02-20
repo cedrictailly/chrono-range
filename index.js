@@ -23,7 +23,7 @@ class ChronoRange {
 
       this[key] = parseDate(text);
 
-      if (this[key]=== null)
+      if (this[key] === null)
         throw new Error(`Invalid "${key}" value`);
     };
 
@@ -77,7 +77,9 @@ class ChronoRange {
     if (!["atime", "mtime", "ctime", "birthtime"].includes(field))
       throw new Error(`Invalid field: ${field}`);
 
-    return this.check(await require("fs").stat(file)[field]);
+    return this.check(
+      (await require("fs").promises.stat(file))[field],
+    );
   }
 
   checkFileSync(file, field = "mtime") {

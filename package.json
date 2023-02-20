@@ -1,6 +1,6 @@
 {
   "name": "chrono-range",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ChronoRange is a simple library to parse and validate date ranges",
   "main": "index.js",
   "author": "Cédric Tailly",
